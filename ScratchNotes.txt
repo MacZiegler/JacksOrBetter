@@ -1,0 +1,22 @@
+Jacks or Better Full Pay
+from http://www.videopokerballer.com/games/jacks-or-better/
+
+"Full pay" refers to the maximum payout for a specific video poker game. In Jacks or Better, full pay games pay out 9x for a full house and 6x for a flush. Keep in mind that "full pay" doesn't necessarily mean the game is beat-able, rather it means that the game is using the most favorable pay table. Here is the full table for a full pay Jacks or Better game:
+
+Hand:	1 Coin:	2 Coins:	3 Coins:	4 Coins:	5 Coins:
+Royal Flush	250	500	750	1000	4000
+Straight Flush	50	100	150	200	250
+Four of a Kind	25	50	75	100	125
+Full House	9	18	27	36	45
+Flush	6	12	18	24	30
+Straight	4	8	12	16	20
+Three of a Kind	3	6	9	12	15
+Two Pair	2	4	6	8	10
+Pair (Jacks or Better)	1	2	3	4	5
+
+We always recommend playing full pay Jacks or Better because it is the most favorable version of Jacks or Better for the player. If you want to play full pay Jacks or Better online, make sure to check out Bovada Casino as they're one of the few casinos that offer the game.
+
+References:
+https://adamweeks.com/2015/02/16/angular-project-blackjack-our-first-controller/
+https://www.codecademy.com/en/forum_questions/4f4dee651319300003000747
+https://aaatdd.wordpress.com/2015/02/21/blackjack-in-angularjs/
