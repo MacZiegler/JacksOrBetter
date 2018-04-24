@@ -15,10 +15,20 @@
 
     <title>Jacks or Better!</title>
   </head>
-  <body ng-app="jacksorBetterApp" ng-controller="JacksorBetterController">
+  <body ng-app="jacksorBetterApp">
     <h1>Jacks or Better!</h1>
 
     <p>Insert start/stop game buttons here.</p>
+    <!-- start and stop -->
+    <div ng-controller="GameController as game">
+      <div ng-if="!game.started">
+          <button class="btn btn-primary" ng-click="game.start()">Start Game</button>
+      </div>
+      <div ng-if="game.started">
+          Game In Progress
+          <button class="btn btn-danger" ng-click="game.end()">End Game</button>
+      </div>
+  </div>
 
     <p>Insert payout table here.</p>
 
