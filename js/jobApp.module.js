@@ -1,22 +1,30 @@
-angular.module('jacksorBetterApp', []);
+// reminder: job stands for "Jacks or Better"
+var app = angular.module('jobApp', []);
 
-function GameController(){
-    var game = this;
- 
-    game.init = function () {
-        game.started = false;
-    };
- 
-    game.start = function () {
-        game.started = true;
-    };
- 
-    game.end = function () {
-        game.started = false;
-    };
- 
-    game.init();
-};
+app.controller('RunController', function($scope) {
+    $scope.game.started = false;
+
+    $scope.game.start = function () {
+        $scope.game.started = true;
+    }
+
+    $scope.game.end = function () {
+        $scope.game.started = false;
+    }
+
+    $scope.bet.amount = 0;
+
+    $scope.bet.onemore = function () {
+        if ($scope.bet.amount < 5) {
+            $scope.bet.amount = $scope.bet.amount + 1;
+        }
+    }
+
+    $scope.bet.max = function () {
+            $scope.bet.amount = 5;
+    }
+
+});
 
 function DeckController() {
     var deck = [];

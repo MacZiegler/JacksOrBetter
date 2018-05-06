@@ -1,48 +1,56 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- AngularJS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
 
-    <!-- Insert Custom CSS here -->
+  <!-- AngularJS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
-    <title>Jacks or Better!</title>
-  </head>
-  <body ng-app="jacksorBetterApp">
-    <h1>Jacks or Better!</h1>
+  <!-- Insert Custom CSS here -->
 
-    <p>Insert start/stop game buttons here.</p>
-    <!-- start and stop -->
-    <div ng-controller="GameController as game">
-      <div ng-if="!game.started">
-          <button class="btn btn-primary" ng-click="game.start()">Start Game</button>
-      </div>
-      <div ng-if="game.started">
-          Game In Progress
-          <button class="btn btn-danger" ng-click="game.end()">End Game</button>
-      </div>
-  </div>
+  <!-- local JavaScript -->
+  <script src="js/jobApp.module.js"></script>
 
-    <p>Insert payout table here.</p>
+  <title>Jacks or Better!</title>
+</head>
 
-    <p>Insert cards here.</p>
+<body ng-app="jobApp">
+  <h1>Jacks or Better!</h1>
 
-    <p>Insert money, bet, amount won, and settings here.</p>
+  <!-- payout table -->
+  <div ng-include="'partials/paytable.html'"></div>
+  <h5>Variable Checks:</h5>
+  <ul>
+    <li>game.started: {{ game.started }}</li>
+    <li>bet.amount:   {{ bet.amount }}</li>
+  </ul>
 
-    <p>Insert Bet One, Bet Max and Deal buttons here.</p>
+  <!-- start/stop game buttons -->
+  <div ng-include="'partials/startstop.html'"></div>
 
+  <p ng-if="game.started">Insert cards here.</p>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+  <p>Insert money, bet, amount won, and settings here.</p>
+  <p>Bet amount: {{ bet.amount }}</p>
+
+  <!-- Bet One, Bet Max and Deal buttons -->
+  <div ng-include="'partials/buttonbar.html'"></div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
