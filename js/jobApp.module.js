@@ -1,7 +1,8 @@
 // reminder: job stands for "Jacks or Better"
 var app = angular.module('jobApp', []);
 
-app.controller('RunController', function($scope) {
+app.controller('RunController', function ($scope) {
+
     $scope.game.started = false;
 
     $scope.game.start = function () {
@@ -12,7 +13,14 @@ app.controller('RunController', function($scope) {
         $scope.game.started = false;
     }
 
+});
+
+app.controller('BetController', function ($scope) {
     $scope.bet.amount = 0;
+
+    $scope.bet.reset = function () {
+        $scope.bet.amount = 0;
+    }
 
     $scope.bet.onemore = function () {
         if ($scope.bet.amount < 5) {
@@ -21,22 +29,20 @@ app.controller('RunController', function($scope) {
     }
 
     $scope.bet.max = function () {
-            $scope.bet.amount = 5;
+        $scope.bet.amount = 5;
     }
 
 });
 
-function DeckController() {
-    var deck = [];
-    deck.suits = [
-        "null",
+app.factory('DeckofCards', function () {
+    var deck = {};
+    var suits = [
         "hearts",
         "spades",
         "diamonds",
         "clubs"
     ];
-    deck.cards = [
-        "null",
+    var names = [
         "ace",
         "two",
         "three",
@@ -51,15 +57,7 @@ function DeckController() {
         "queen",
         "king"
     ];
-};
+    return deck;
+});
 
-function shuffle (){};
-
-function deal (){};
-
-function hand (){};
-
-function bet (){};
-
-function score (){};
-// calculate payout as bet * scale unless 5 coin royal flush, then 4000
+// calculate payout as bet * scale unless 5 coin royal flush, then 4000 | 16 * scale | bet * scale * 3.2

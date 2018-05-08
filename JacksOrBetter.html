@@ -21,24 +21,17 @@
   <title>Jacks or Better!</title>
 </head>
 
-<body ng-app="jobApp">
+<body ng-app="jobApp" ng-controller="RunController as game">
   <h1>Jacks or Better!</h1>
 
   <!-- payout table -->
   <div ng-include="'partials/paytable.html'"></div>
-  <h5>Variable Checks:</h5>
-  <ul>
-    <li>game.started: {{ game.started }}</li>
-    <li>bet.amount:   {{ bet.amount }}</li>
-  </ul>
 
   <!-- start/stop game buttons -->
   <div ng-include="'partials/startstop.html'"></div>
 
-  <p ng-if="game.started">Insert cards here.</p>
-
-  <p>Insert money, bet, amount won, and settings here.</p>
-  <p>Bet amount: {{ bet.amount }}</p>
+  <!-- <p ng-if="game.started">Insert cards here.</p> -->
+  <div ng-if="game.started" ng-include="'partials/cards.html'"></div>
 
   <!-- Bet One, Bet Max and Deal buttons -->
   <div ng-include="'partials/buttonbar.html'"></div>

@@ -21,3 +21,41 @@ https://adamweeks.com/2015/02/16/angular-project-blackjack-our-first-controller/
 https://www.codecademy.com/en/forum_questions/4f4dee651319300003000747
 https://aaatdd.wordpress.com/2015/02/21/blackjack-in-angularjs/
 https://embed.plnkr.co/1LsJTl/
+
+
+
+    $scope.bet.amount = 0;
+
+    $scope.bet.onemore = function () {
+        if ($scope.bet.amount < 5) {
+            $scope.bet.amount = $scope.bet.amount + 1;
+        }
+    }
+
+    $scope.bet.max = function () {
+        $scope.bet.amount = 5;
+    }
+
+    deck.suits = [
+        "null",
+        "hearts",
+        "spades",
+        "diamonds",
+        "clubs"
+    ];
+    deck.names = [
+        "null",
+        "ace",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten",
+        "jack",
+        "queen",
+        "king"
+    ];
