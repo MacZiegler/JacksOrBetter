@@ -44,7 +44,6 @@ app.controller('DeckController', function ($scope, DeckFactory) {
 app.factory('DeckFactory', function () {
     var deck = {};
     var names = [
-        "ace",
         "two",
         "three",
         "four",
@@ -56,7 +55,8 @@ app.factory('DeckFactory', function () {
         "ten",
         "jack",
         "queen",
-        "king"
+        "king",
+        "ace"
     ];
     var suits = [
         "hearts",
@@ -68,7 +68,7 @@ app.factory('DeckFactory', function () {
         return {
             name: name,
             suit: suit,
-            value: indexOf(name) + 1,
+            value: indexOf(name) + 2,
             fullname: name + ' of ' + suit
         };
     };
@@ -80,7 +80,7 @@ app.factory('DeckFactory', function () {
             });
         });
     };
-    function dealOneCard() {
+    function dealCard() {
         return deck.cards.shift();
       };
     // need setter and getter ???  --  don't think so
