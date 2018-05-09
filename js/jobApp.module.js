@@ -34,14 +34,15 @@ app.controller('BetController', function ($scope) {
 
 });
 
-app.factory('DeckofCards', function () {
+app.controller('DeckController', function ($scope, DeckFactory) {
+    $scope.theDeck = {};
+    $scope.grabDeck = function () {
+        $scope.theDeck = DeckFactory.makeDeck()
+    };
+});
+
+app.factory('DeckFactory', function () {
     var deck = {};
-    var suits = [
-        "hearts",
-        "spades",
-        "diamonds",
-        "clubs"
-    ];
     var names = [
         "ace",
         "two",
@@ -57,6 +58,39 @@ app.factory('DeckofCards', function () {
         "queen",
         "king"
     ];
+    var suits = [
+        "hearts",
+        "spades",
+        "diamonds",
+        "clubs"
+    ];
+    function Card(name, suit) {
+        return {
+            name: name,
+            suit: suit,
+            value: indexOf(name) + 1,
+            fullname: name + ' of ' + suit
+        };
+    };
+    var makeDeck = function () {
+        deck.cards = [];
+        suits.forEach(function (suit) {
+            names.forEach(function (name) {
+                deck.cards.push(Card(name, suit));
+            });
+        });
+    };
+    function dealOneCard() {
+        return deck.cards.shift();
+      };
+    // need setter and getter ???  --  don't think so
+    // deck.setDeck = function (aDeck) {
+    //     deck = aDeck;
+    // };
+    // deck.getDeck = function () {
+    //     return deck;
+    // }
+
     return deck;
 });
 

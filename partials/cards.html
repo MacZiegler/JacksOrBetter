@@ -41,3 +41,9 @@
     </div>
   </div>
 </div>
+<!-- deck test -->
+<div class="row" ng-controller="DeckController as playdeck">
+  <button type="button" class="btn btn-primary" ng-click="playdeck.grabDeck()">New Deck</button>
+  <p>Deck Test: {{ playdeck.deck.cards.length }} cards</p>
+  <p><span ng-repeat="card in deck">{{ card.fullname }}</span></p>
+</div>
