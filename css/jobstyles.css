@@ -1,0 +1,25 @@
+/*
+ * style sheet for the JacksorBetter project
+ * Author: Toby Ziegler
+ * Author url: http://tobyziegler.com
+ */
+
+ body {
+  font-family: Verdana, Tahoma, Geneva, sans-serif;
+}
+
+.display-1,
+.display-2,
+.display-3,
+.display-4 {
+  font-weight: bolder;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+}
