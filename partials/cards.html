@@ -42,20 +42,20 @@
   </div>
 </div>
 <!-- deck test -->
-<div class="row" ng-controller="DeckController as theDeck">
+<div class="row" ng-controller="DeckController as deck">
   <div class="col">
     <p>
-      <button type="button" class="btn btn-primary" ng-click="theDeck.makeDeck()">New Deck</button>
+      <button type="button" class="btn btn-primary" ng-click="deck.newDeck()">New Deck</button>
     </p>
-    <p>Deck Test: {{ theDeck.length }} cards</p>
+    <p>Deck Test: {{ deck.length }} cards</p>
 
-    <div ng-repeat="card in theDeck">
-      <p>Name: {{ card.name }}</p>
+    <div ng-repeat="card in deck">
+      <p>Name: {{ card.fullname }}</p>
     </div>
   </div>
 
   <!-- this code works -->
-  <!-- <div ng-repeat="card in theDeck">
+  <!-- <div ng-repeat="card in deck">
     <p>Type: {{ card.type }}, Model: {{ card.model }}, Color: {{ card.color }}</p>
   </div> -->
 </div>

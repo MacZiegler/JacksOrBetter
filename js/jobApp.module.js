@@ -34,69 +34,52 @@ app.controller('BetController', function ($scope) {
 
 });
 
-app.factory('DeckFactory', function () {
-    var deck = [];
-    var pips = [
-        "two",
-        "three",
-        "four",
-        "five",
-        "six",
-        "seven",
-        "eight",
-        "nine",
-        "ten",
-        "jack",
-        "queen",
-        "king",
-        "ace"
-    ];
-    var suits = [
-        "hearts",
-        "spades",
-        "diamonds",
-        "clubs"
-    ];
-    function Card(pip, suit) {
-        return {
-            name: pip,
-            suit: suit,
-            value: indexOf(pip) + 2,
-            fullname: pip + ' of ' + suit
-        };
-    };
-    deck.makeDeck = function () {
-        deck.cards = [];
-        angular.forEach(suits, function (suit, key) {
-            angular.forEach(pips, function (pip, key) {
-                deck.cards.push(Card(pip, suit));
-            });
-        });
-    };
-    function dealCard() {
-        return deck.cards.shift();
-      };
-    // need setter and getter ???  --  don't think so
-    // deck.setDeck = function (aDeck) {
-    //     deck = aDeck;
-    // };
-    // deck.getDeck = function () {
-    //     return deck;
-    // }
-    function testCards() {
-        angular.forEach(pips,function(name, key) {
-            deck.card.push(name);
-        });
-        return deck;
-        // deck.name.forEach.push(pips);
-    }
 
-    testCards();
-    return deck;
-});
+app.controller('DeckController', function ($scope) {
 
-app.controller('DeckController', function ($scope, DeckFactory) {
-$scope.theDeck = DeckFactory.deck;
+var deck = [];
+var pips = [
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "jack",
+    "queen",
+    "king",
+    "ace"
+];
+var suits = [
+    "hearts",
+    "spades",
+    "diamonds",
+    "clubs"
+];
+function Card(pip, suit) {
+    return {
+        name: pip,
+        suit: suit,
+        value: indexOf(pip) + 2,
+        fullname: pip + ' of ' + suit
+    };
+};
+$scope.deck.makeDeck = function () {
+    deck.cards = [];
+    angular.forEach(suits, function (suit, key) {
+        angular.forEach(pips, function (pip, key) {
+            deck.cards.push(Card(pip, suit));
+        });
+    });
+    return deck.cards;
+};
+function dealCard() {
+    return deck.cards.shift();
+  };
+
 
     // this works
     // $scope.theDeck = [
