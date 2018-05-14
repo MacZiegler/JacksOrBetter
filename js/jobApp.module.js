@@ -92,6 +92,9 @@ app.controller('DeckController', function ($scope) {
     }
 
     function cut(chopdeck) {
+        $scope.testchopdeck = chopdeck;//testcode
+        var leftcards = [];
+        var righcards = [];
         if (!chopdeck || !chopdeck.length) {
             return {
                 leftcards: [],
@@ -108,20 +111,47 @@ app.controller('DeckController', function ($scope) {
             var randomness = randomInt(0, 10) - 5;
             halfway += randomness;
             halfway = Math.max(halfway, 1);
+            for (var x = 0; x < halfway; x++) {
+                leftcards.push(chopdeck[x]);
+            };
+            for (var y = chopdeck.length +1; y > halfway; y--) {
+                rightcards.push(chopdeck[y]);
+            };
+
             return {
-                leftcards: chopdeck.slice(0, halfway),
-                rightcards: chopdeck.slice(halfway)
+                // leftcards: chopdeck.slice(0, halfway),
+                // rightcards: chopdeck.slice(halfway)
+                leftcards, rightcards
             };
         }
+    }
+    // testcode
+    function chop(cutdeck) {
+        return {
+            leftcards: [
+                { name: 'king', suit: 'hearts', value: 13, fullname: 'king of hearts' },
+                { name: 'ace', suit: 'hearts', value: 14, fullname: 'ace of hearts' }
+            ],
+            rightcards: [
+                { name: 'ten', suit: 'hearts', value: 10, fullname: 'ten of hearts' },
+                { name: 'jack', suit: 'hearts', value: 11, fullname: 'jack of hearts' },
+                { name: 'queen', suit: 'hearts', value: 12, fullname: 'queen of hearts' }
+            ]
+        };
     }
 
     function shuffle(shufflecards) {
         // function shuffle() {
         // var shufflecards = $scope.deck.cards;
+        $scope.testshufflecards = shufflecards;//testcode
         var shuffletimes = 20;
         for (var i = 0; i < shuffletimes; i++) {
             // cut the cards in half
             var halves = cut(shufflecards);
+            // var halves = cut(shufflecards);
+            $scope.testhalves = halves;//testcode
+            $scope.testleftcards = halves.leftcards;//testcode
+            $scope.testrightcards = halves.rightcards;//testcode
             // we will stack both halves into this centercards
             var centercards = [];
             while (halves.leftcards.length > 0 || halves.rightcards.length > 0) {
@@ -134,6 +164,7 @@ app.controller('DeckController', function ($scope) {
                 // take that many cards from the rightcards and put in the centercards
                 centercards = centercards.concat(halves.rightcards.splice(0, take));
             }
+            $scope.testcentercards = centercards;//testcode
             shufflecards = centercards;
         }
         return shufflecards;
@@ -144,8 +175,10 @@ app.controller('DeckController', function ($scope) {
         { name: 'jack', suit: 'hearts', value: 11, fullname: 'jack of hearts' },
         { name: 'queen', suit: 'hearts', value: 12, fullname: 'queen of hearts' },
         { name: 'king', suit: 'hearts', value: 13, fullname: 'king of hearts' },
-        { name: 'ace', suit: 'hearts', value: 14, fullname: 'ace of hearts' },
+        { name: 'ace', suit: 'hearts', value: 14, fullname: 'ace of hearts' }
     ];
+    // newDeck(deck.cards);
+    // newDeck($scope.deck.cards);
     // newDeck(tempDeck);
     // $scope.deck.cards = shuffle(tempDeck);
     var transferDeck = shuffle(tempDeck);
