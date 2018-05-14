@@ -37,49 +37,128 @@ app.controller('BetController', function ($scope) {
 
 app.controller('DeckController', function ($scope) {
 
-var deck = [];
-var pips = [
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine",
-    "ten",
-    "jack",
-    "queen",
-    "king",
-    "ace"
-];
-var suits = [
-    "hearts",
-    "spades",
-    "diamonds",
-    "clubs"
-];
-function Card(pip, suit) {
-    return {
-        name: pip,
-        suit: suit,
-        value: indexOf(pip) + 2,
-        fullname: pip + ' of ' + suit
+    $scope.deck = [];
+    var pips = [
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten",
+        "jack",
+        "queen",
+        "king",
+        "ace"
+    ];
+    var suits = [
+        "hearts",
+        "spades",
+        "diamonds",
+        "clubs"
+    ];
+    // Card function configured for numeric input
+    function Card(pip, suit) {
+        var pipname = pips[pip];
+        var suitname = suits[suit];
+        var position = pips.indexOf(pipname);
+        return {
+            name: pipname,
+            suit: suitname,
+            value: position + 2,
+            fullname: pipname + ' of ' + suitname
+        };
     };
-};
-$scope.deck.makeDeck = function () {
-    deck.cards = [];
-    angular.forEach(suits, function (suit, key) {
-        angular.forEach(pips, function (pip, key) {
-            deck.cards.push(Card(pip, suit));
-        });
-    });
-    return deck.cards;
-};
-function dealCard() {
-    return deck.cards.shift();
-  };
 
+    // works!!
+    // Card function configured for numeric input
+    // function Card(pip, suit) {
+    //     var pipname = pips[pip];
+    //     var suitname = suits[suit];
+    //     var position = pips.indexOf(pipname);
+    //     return {
+    //         name: pipname,
+    //         suit: suitname,
+    //         value: position + 2,
+    //         fullname: pipname + ' of ' + suitname
+    //     };
+    // };
+
+    function makeDeck() {
+        var pipsall = pips.length;
+        var suitsall = suits.length;
+        for (var suitspot = 0; suitspot < suitsall; suitspot++) {
+            for (var pipspot = 0; pipspot < pipsall; pipspot++) {
+                $scope.deck.push(Card(pipspot, suitspot));
+            }
+        }
+
+        return $scope.deck;
+    };
+
+    makeDeck();
+
+// works!!
+// function makeDeck() {
+//     var pipspot = 0;
+//     var suitspot = 0;
+//     var pipsall = pips.length;
+//     var suitsall = suits.length;
+//     for (suitspot = 0; suitspot < suitsall; suitspot++) {
+//         for (pipspot = 0; pipspot < pipsall; pipspot++) {
+//             $scope.deck.push(Card(pipspot, suitspot));
+//         }
+//     }
+
+//     return $scope.deck;
+// };
+
+// makeDeck();
+
+
+    // function dealCard() {
+    //     return deck.cards.shift();
+    // };
+
+    // just pushes pips
+    // function builDeck() {
+    //     $scope.deck =
+    //         angular.forEach(pips, function (value, key) {
+    //             deck.push(Card(pips[key], suits[0]));
+    //             return deck;
+    //         });
+    // };
+
+    // builDeck();
+
+    function testCard(a, b) {
+        $scope.onecard = Card(a, b);
+        // $scope.onecard = onecard.push(Card(a+1,b+1));
+        $scope.samplea = pips[a];
+        $scope.sampleb = suits[b];
+        $scope.index = pips.indexOf()
+    }
+
+    testCard(9, 2);
+    // works!
+    // function testDeck() {
+    //     $scope.deck = pips;
+    //     return deck;
+    // }
+
+    // testDeck();
+
+    // $scope.deck = function () {
+    //     $scope.deck = [
+    //         {pip:"ace", suit:"hearts", value:13},
+    //         {pip:"king", suit:"hearts", value:12},
+    //         {pip:"queen", suit:"hearts", value:11},
+    //         {pip:"jack", suit:"hearts", value:10}
+    //     ];
+    //     return $scope.deck;
+    // };
 
     // this works
     // $scope.theDeck = [
@@ -87,7 +166,7 @@ function dealCard() {
     //     {type:"Volvo", model:"Wagon", color:"blue"},
     //     {type:"BMW", model:"M3", color:"Red"}];
 
-// not working
+    // not working
     // $scope.grabDeck = function () {
     //     $scope.theDeck = DeckFactory.makeDeck()
     // };

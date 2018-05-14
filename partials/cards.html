@@ -42,17 +42,21 @@
   </div>
 </div>
 <!-- deck test -->
-<div class="row" ng-controller="DeckController as deck">
+<!-- <div class="row" ng-controller="DeckController as deck">
   <div class="col">
     <p>
-      <button type="button" class="btn btn-primary" ng-click="deck.newDeck()">New Deck</button>
+      <button type="button" class="btn btn-primary" ng-click="deck.makeDeck()">New Deck</button>
     </p>
-    <p>Deck Test: {{ deck.length }} cards</p>
+    <p>Deck Test: {{ deck.length }} cards</p> -->
 
-    <div ng-repeat="card in deck">
-      <p>Name: {{ card.fullname }}</p>
+    <!-- <div ng-repeat="card in deck">
+      <p>Base: {{ card }}, Name: {{ card.name }}, Suit: {{ card.suit }}, Value {{ card.value }}, Fullname: {{ card.fullname }}</p>
     </div>
-  </div>
+    <p>onecard: {{ onecard }}, Name: {{ onecard.name }}, Suit: {{ onecard.suit }}, Value {{ onecard.value }}, Fullname: {{ onecard.fullname }}</p>
+    <p>sample a: {{ samplea }}, Name: {{ samplea.name }}, Suit: {{ samplea.suit }}, Value {{ samplea.value }}, Fullname: {{ samplea.fullname }}</p>
+    <p>sample b: {{ sampleb }}, Name: {{ sampleb.name }}, Suit: {{ sampleb.suit }}, Value {{ sampleb.value }}, Fullname: {{ sampleb.fullname }}</p>
+    <p>index: {{ index }}, Name: {{ index.name }}, Suit: {{ index.suit }}, Value {{ index.value }}, Fullname: {{ index.fullname }}</p>
+  </div> -->
 
   <!-- this code works -->
   <!-- <div ng-repeat="card in deck">
