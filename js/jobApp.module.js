@@ -37,7 +37,25 @@ app.controller('BetController', function ($scope) {
 
 app.controller('DeckController', function ($scope) {
 
-    $scope.deck = [];
+
+    // the deck object
+    // function Deck() {
+    //     // our public interface called "deck"
+    //     $scope.deck = {};
+    //     // where to find the array of cards
+    //     $scope.deck.cards = [
+    //         {name: 'jack', suit: 'hearts', value: 11, fullname: 'jack of hearts'},
+    //         {name: 'king', suit: 'diamonds', value: 13, fullname: 'king of diamonds'}
+    //     ];
+    //     // expose operations publicly by attaching to deck
+    //     deck.cut = cut;
+    //     deck.shuffleCards = shuffleCards;
+    //     deck.dealCard = dealCard;
+
+    $scope.deck = {};
+    $scope.deck.cards = [];
+    $scope.deck.shuffle = shuffle;
+    $scope.deck.deal = deal;
     var pips = [
         "two",
         "three",
@@ -59,6 +77,11 @@ app.controller('DeckController', function ($scope) {
         "diamonds",
         "clubs"
     ];
+
+    function randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
     // Card function configured for numeric input
     function Card(pip, suit) {
         var pipname = pips[pip];
@@ -72,108 +95,78 @@ app.controller('DeckController', function ($scope) {
         };
     };
 
-    // works!!
-    // Card function configured for numeric input
-    // function Card(pip, suit) {
-    //     var pipname = pips[pip];
-    //     var suitname = suits[suit];
-    //     var position = pips.indexOf(pipname);
-    //     return {
-    //         name: pipname,
-    //         suit: suitname,
-    //         value: position + 2,
-    //         fullname: pipname + ' of ' + suitname
-    //     };
-    // };
-
-    function makeDeck() {
+    function newDeck(makedeck) {
         var pipsall = pips.length;
         var suitsall = suits.length;
         for (var suitspot = 0; suitspot < suitsall; suitspot++) {
             for (var pipspot = 0; pipspot < pipsall; pipspot++) {
-                $scope.deck.push(Card(pipspot, suitspot));
-            }
-        }
-
-        return $scope.deck;
+                makedeck.push(Card(pipspot, suitspot));
+            };
+        };
+        return makedeck;
     };
 
-    makeDeck();
+    function cut(chopdeck) {
+        if (!chopdeck || !chopdeck.length) {
+            return {
+                leftcards: [],
+                rightcards: []
+            };
+        } else if (chopdeck.length === 1) {
+            return {
+                leftcards: [chopdeck[0]],
+                rightcards: []
+            };
+        } else {
+            // find the middle, with a random variance of +/- 5
+            var halfway = Math.floor(chopdeck.length / 2);
+            var randomness = randomInt(0, 10) - 5;
+            halfway += randomness;
+            halfway = Math.max(halfway, 1);
+            return {
+                leftcards: chopdeck.slice(0, halfway),
+                rightcards: chopdeck.slice(halfway)
+            };
+        };
+        return chopdeck;
+    };
 
-// works!!
-// function makeDeck() {
-//     var pipspot = 0;
-//     var suitspot = 0;
-//     var pipsall = pips.length;
-//     var suitsall = suits.length;
-//     for (suitspot = 0; suitspot < suitsall; suitspot++) {
-//         for (pipspot = 0; pipspot < pipsall; pipspot++) {
-//             $scope.deck.push(Card(pipspot, suitspot));
-//         }
-//     }
+    function shuffle(shufflecards) {
+        var shuffletimes = 20;
+        for (var i = 0; i < shuffletimes; i++) {
+            // cut the cards in half
+            var halves = cut(shufflecards);
+            // we will stack both halves into this centercards
+            var centercards = [];
+            while (halves.leftcards.length > 0 || halves.rightcards.length > 0) {
+                // a random number of cards to take from the leftcards
+                var take = randomInt(1, 5);
+                // take that many cards from the leftcards and put in the centercards
+                centercards = centercards.concat(halves.leftcards.splice(0, take));
+                // a random number of cards to take from the rightcards
+                take = randomInt(1, 5);
+                // take that many cards from the rightcards and put in the centercards
+                centercards = centercards.concat(halves.rightcards.splice(0, take));
+            };
 
-//     return $scope.deck;
-// };
+        };
+        return shufflecards;
+    };
 
-// makeDeck();
+    var tempDeck = [
+        { name: 'ten', suit: 'hearts', value: 11, fullname: 'ten of hearts' },
+        { name: 'jack', suit: 'hearts', value: 11, fullname: 'jack of hearts' },
+        { name: 'queen', suit: 'hearts', value: 11, fullname: 'queen of hearts' },
+        { name: 'king', suit: 'hearts', value: 11, fullname: 'king of hearts' },
+        { name: 'ace', suit: 'hearts', value: 11, fullname: 'ace of hearts' },
+    ];
+    // newDeck(tempDeck);
+    $scope.deck.cards = shuffle(tempDeck);
 
-
-    // function dealCard() {
-    //     return deck.cards.shift();
-    // };
-
-    // just pushes pips
-    // function builDeck() {
-    //     $scope.deck =
-    //         angular.forEach(pips, function (value, key) {
-    //             deck.push(Card(pips[key], suits[0]));
-    //             return deck;
-    //         });
-    // };
-
-    // builDeck();
-
-    function testCard(a, b) {
-        $scope.onecard = Card(a, b);
-        // $scope.onecard = onecard.push(Card(a+1,b+1));
-        $scope.samplea = pips[a];
-        $scope.sampleb = suits[b];
-        $scope.index = pips.indexOf()
+    function deal(dealcard) {
+        return dealcard;
     }
-
-    testCard(9, 2);
-    // works!
-    // function testDeck() {
-    //     $scope.deck = pips;
-    //     return deck;
-    // }
-
-    // testDeck();
-
-    // $scope.deck = function () {
-    //     $scope.deck = [
-    //         {pip:"ace", suit:"hearts", value:13},
-    //         {pip:"king", suit:"hearts", value:12},
-    //         {pip:"queen", suit:"hearts", value:11},
-    //         {pip:"jack", suit:"hearts", value:10}
-    //     ];
-    //     return $scope.deck;
     // };
-
-    // this works
-    // $scope.theDeck = [
-    //     {type:"Saab", model:"Viggen", color:"White"},
-    //     {type:"Volvo", model:"Wagon", color:"blue"},
-    //     {type:"BMW", model:"M3", color:"Red"}];
-
-    // not working
-    // $scope.grabDeck = function () {
-    //     $scope.theDeck = DeckFactory.makeDeck()
-    // };
-    // $scope.testCards = function() {
-    //     $scope.theDeck = DeckFactory.testCards();
-    // };
-    // testCards();
 });
 
 // calculate payout as bet * scale unless 5 coin royal flush, then 4000 | 16 * scale | bet * scale * 3.2
