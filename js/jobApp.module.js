@@ -7,11 +7,11 @@ app.controller('RunController', function ($scope) {
 
     $scope.game.start = function () {
         $scope.game.started = true;
-    }
+    };
 
     $scope.game.end = function () {
         $scope.game.started = false;
-    }
+    };
 
 });
 
@@ -20,37 +20,22 @@ app.controller('BetController', function ($scope) {
 
     $scope.bet.reset = function () {
         $scope.bet.amount = 0;
-    }
+    };
 
     $scope.bet.onemore = function () {
         if ($scope.bet.amount < 5) {
             $scope.bet.amount = $scope.bet.amount + 1;
         }
-    }
+    };
 
     $scope.bet.max = function () {
         $scope.bet.amount = 5;
-    }
+    };
 
 });
 
 
 app.controller('DeckController', function ($scope) {
-
-
-    // the deck object
-    // function Deck() {
-    //     // our public interface called "deck"
-    //     $scope.deck = {};
-    //     // where to find the array of cards
-    //     $scope.deck.cards = [
-    //         {name: 'jack', suit: 'hearts', value: 11, fullname: 'jack of hearts'},
-    //         {name: 'king', suit: 'diamonds', value: 13, fullname: 'king of diamonds'}
-    //     ];
-    //     // expose operations publicly by attaching to deck
-    //     deck.cut = cut;
-    //     deck.shuffleCards = shuffleCards;
-    //     deck.dealCard = dealCard;
 
     $scope.deck = {};
     $scope.deck.cards = [];
@@ -93,7 +78,7 @@ app.controller('DeckController', function ($scope) {
             value: position + 2,
             fullname: pipname + ' of ' + suitname
         };
-    };
+    }
 
     function newDeck(makedeck) {
         var pipsall = pips.length;
@@ -101,10 +86,10 @@ app.controller('DeckController', function ($scope) {
         for (var suitspot = 0; suitspot < suitsall; suitspot++) {
             for (var pipspot = 0; pipspot < pipsall; pipspot++) {
                 makedeck.push(Card(pipspot, suitspot));
-            };
-        };
+            }
+        }
         return makedeck;
-    };
+    }
 
     function cut(chopdeck) {
         if (!chopdeck || !chopdeck.length) {
@@ -127,11 +112,12 @@ app.controller('DeckController', function ($scope) {
                 leftcards: chopdeck.slice(0, halfway),
                 rightcards: chopdeck.slice(halfway)
             };
-        };
-        return chopdeck;
-    };
+        }
+    }
 
     function shuffle(shufflecards) {
+        // function shuffle() {
+        // var shufflecards = $scope.deck.cards;
         var shuffletimes = 20;
         for (var i = 0; i < shuffletimes; i++) {
             // cut the cards in half
@@ -147,21 +133,23 @@ app.controller('DeckController', function ($scope) {
                 take = randomInt(1, 5);
                 // take that many cards from the rightcards and put in the centercards
                 centercards = centercards.concat(halves.rightcards.splice(0, take));
-            };
-
-        };
+            }
+            shufflecards = centercards;
+        }
         return shufflecards;
-    };
+    }
 
     var tempDeck = [
-        { name: 'ten', suit: 'hearts', value: 11, fullname: 'ten of hearts' },
+        { name: 'ten', suit: 'hearts', value: 10, fullname: 'ten of hearts' },
         { name: 'jack', suit: 'hearts', value: 11, fullname: 'jack of hearts' },
-        { name: 'queen', suit: 'hearts', value: 11, fullname: 'queen of hearts' },
-        { name: 'king', suit: 'hearts', value: 11, fullname: 'king of hearts' },
-        { name: 'ace', suit: 'hearts', value: 11, fullname: 'ace of hearts' },
+        { name: 'queen', suit: 'hearts', value: 12, fullname: 'queen of hearts' },
+        { name: 'king', suit: 'hearts', value: 13, fullname: 'king of hearts' },
+        { name: 'ace', suit: 'hearts', value: 14, fullname: 'ace of hearts' },
     ];
     // newDeck(tempDeck);
-    $scope.deck.cards = shuffle(tempDeck);
+    // $scope.deck.cards = shuffle(tempDeck);
+    var transferDeck = shuffle(tempDeck);
+    $scope.deck.cards = transferDeck;
 
     function deal(dealcard) {
         return dealcard;
