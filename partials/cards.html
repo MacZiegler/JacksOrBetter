@@ -1,42 +1,42 @@
 <!-- basic 5 card layout to begin, DRY optimize later -->
 <div class="row" ng-if="game.started">
   <div class="col">
-    <div class="card">
-      <img class="card-img-top" src="" alt="Card image">
+    <div id="Card01" class="card">
+      <img class="card-img-top" src="" alt="{{ card.1.fullname }}">
+      <div class="card-body">
+        <button type="button" class="btn btn-success" ng-click="card.1.keep()">{{ card.5.keepstatus }}</button>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div id="Card02" class="card">
+      <img class="card-img-top" src="" alt="{{ card.2.fullname }}">
+      <div class="card-body">
+        <button type="button" class="btn btn-success" ng-click="card.2.keep()">{{ card.5.keepstatus }}</button>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div id="Card03" class="card">
+      <img class="card-img-top" src="" alt="{{ card.3.fullname }}">
+      <div class="card-body">
+        <button type="button" class="btn btn-success" ng-click="card.3.keep()">{{ card.5.keepstatus }}</button>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div id="Card04" class="card">
+      <button type="button" class="btn btn-success" ng-click="card.4.keep()">{{ card.5.keepstatus }}</button>
       <div class="card-body">
         <button type="button" class="btn btn-success" ng-click="card.keep()">Keep</button>
       </div>
     </div>
   </div>
   <div class="col">
-    <div class="card">
-      <img class="card-img-top" src="" alt="Card image">
+    <div id="Card05" class="card">
+      <img class="card-img-top" src="" alt="{{ card.5.fullname }}">
       <div class="card-body">
-        <button type="button" class="btn btn-success" ng-click="card.keep()">Keep</button>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <img class="card-img-top" src="" alt="Card image">
-      <div class="card-body">
-        <button type="button" class="btn btn-success" ng-click="card.keep()">Keep</button>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <img class="card-img-top" src="" alt="Card image">
-      <div class="card-body">
-        <button type="button" class="btn btn-success" ng-click="card.keep()">Keep</button>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <img class="card-img-top" src="" alt="Card image">
-      <div class="card-body">
-        <button type="button" class="btn btn-success" ng-click="card.keep()">Keep</button>
+        <button type="button" class="btn btn-success" ng-click="card.5.keep()">{{ card.5.keepstatus }}</button>
       </div>
     </div>
   </div>
@@ -45,13 +45,15 @@
 <div class="row">
   <div class="col" ng-controller="DeckController">
     <p>Deck Test: {{ deck.cards.length }} cards</p>
-    <p><button type="button" class="btn btn-success" ng-click="shuffle(deck.cards)">Shuffle</button></p>
-    <p>deck.cards: {{ deck.cards }}</p>
-    <p>testshufflecards: {{ testshufflecards }}</p>
-    <p>testhalves: {{ testhalves }}</p>
+    <p><button type="button" class="btn btn-success" ng-click="'shuffle(deck.cards)'">Shuffle</button></p>
+    <!-- <p>deck.cards: {{ deck.cards }}</p> -->
+    <!-- <p>testshufflecards: {{ testshufflecards }}</p> -->
+    <!-- <p>testhalves: {{ testhalves }}</p>
     <p>testleftcards: {{ testleftcards }}</p>
     <p>testrightcards: {{ testrightcards }}</p>
     <p>testchopdeck: {{ testchopdeck }}</p>
-    <p>testchopdeck.length: {{ testchopdeck.length }}</p>
+    <p>testchopdeck.length: {{ testchopdeck.length }}</p> -->
+    <p>Hand Test: {{ deck.hand.length }} cards</p>
+    <p>testcurrenthand: {{ testcurrenthand }}</p>
   </div>
 </div>
