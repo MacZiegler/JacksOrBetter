@@ -74,7 +74,7 @@ app.controller('DeckController', function ($scope) {
         var pipname = pips[pip];
         var suitname = suits[suit];
         var position = pips.indexOf(pipname);
-        if (position > 9) {
+        if (position > 8) {
             var path = pipname + '_of_' + suitname + '.svg'
         } else {
             var path = (position + 2) + '_of_' + suitname + '.svg'
