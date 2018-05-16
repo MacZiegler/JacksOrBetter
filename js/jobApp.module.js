@@ -153,18 +153,18 @@ app.controller('DeckController', function ($scope) {
 
     function shuffle(shufflecards) {
         $scope.testshufflecards = shufflecards;//testcode
-        var shuffletimes = 1;
+        var shuffletimes = 20   ;
+        var centercards = [];
         for (var i = 0; i < shuffletimes; i++) {
-            var centercards = [];
             // cut the cards in half
-            if (i = 0) {
+            if (i === 0) {
                 var halves = cut(shufflecards);
             } else {
                 var halves = cut(centercards);
             }
             while (halves.leftcards.length > 0 || halves.rightcards.length > 0) {
                 var flipflop = randomInt(1, 2);
-                if (flipflop == 1) {
+                if (flipflop === 1) {
                     var take = randomInt(1, 5);
                     centercards = centercards.concat(halves.leftcards.splice(0, take));
                     take = randomInt(1, 5);
@@ -173,11 +173,11 @@ app.controller('DeckController', function ($scope) {
                     var take = randomInt(1, 5);
                     centercards = centercards.concat(halves.rightcards.splice(0, take));
                     take = randomInt(1, 5);
-                    centercards = centercards.concat(halves.leftcards.splice(0, take));    
+                    centercards = centercards.concat(halves.leftcards.splice(0, take));
                 }
             }
+            // return centercards;
         }
-        // return centercards;
         $scope.deck.cards = centercards;
         $scope.testcentercards = centercards;//testcode
     }
