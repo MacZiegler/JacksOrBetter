@@ -74,11 +74,17 @@ app.controller('DeckController', function ($scope) {
         var pipname = pips[pip];
         var suitname = suits[suit];
         var position = pips.indexOf(pipname);
+        if (position > 9) {
+            var path = pipname + '_of_' + suitname + '.svg'
+        } else {
+            var path = (position + 2) + '_of_' + suitname + '.svg'
+        };
         return {
             name: pipname,
             suit: suitname,
             value: position + 2,
             fullname: pipname + ' of ' + suitname,
+            pathname: path,
             keep: true
         };
     }
@@ -113,43 +119,67 @@ app.controller('DeckController', function ($scope) {
             var randomness = randomInt(0, 14) - 7;
             halfway += randomness;
             halfway = Math.max(halfway, 1);
-            var flipflop = randomInt(1, 2);
-            if (flipflop == 1) {
-                return {
-                    leftcards: chopdeck.slice(0, halfway),
-                    rightcards: chopdeck.slice(halfway)
+            // var flipflop = randomInt(1, 2);
+            if (halfway % 2 === 0) {
+                for (var x = 0; x < halfway; x++) {
+                    leftcards.push(chopdeck[x]);
+                };
+                for (var y = chopdeck.length - 1; y >= halfway; y--) {
+                    rightcards.push(chopdeck[y]);
                 };
             } else {
-                return {
-                    rightcards: chopdeck.slice(0, halfway),
-                    leftcards: chopdeck.slice(halfway)
+                for (var x = chopdeck.length - 1; x > halfway; x--) {
+                    rightcards.push(chopdeck[x]);
                 };
-            }
+                for (var y = halfway; y >= 0; y--) {
+                    leftcards.push(chopdeck[y]);
+                };
+            };
+            return {
+                leftcards, rightcards
+            };
+            //     return {
+            //         leftcards: chopdeck.slice(0, halfway),
+            //         rightcards: chopdeck.slice(halfway)
+            //     };
+            // } else {
+            //     return {
+            //         rightcards: chopdeck.slice(0, halfway),
+            //         leftcards: chopdeck.slice(halfway)
+            //     };
+            // }
         }
     }
 
     function shuffle(shufflecards) {
-        // function shuffle() {
-        // var shufflecards = $scope.deck.cards;
         $scope.testshufflecards = shufflecards;//testcode
-        var shuffletimes = 20;
+        var shuffletimes = 1;
         for (var i = 0; i < shuffletimes; i++) {
-            // cut the cards in half
-            var halves = cut(shufflecards);
             var centercards = [];
-            while (halves.leftcards.length > 0 || halves.rightcards.length > 0) {
-                // a random number of cards to take from the leftcards
-                var take = randomInt(1, 7);
-                // take that many cards from the leftcards and put in the centercards
-                centercards = centercards.concat(halves.leftcards.splice(0, take));
-                // a random number of cards to take from the rightcards
-                take = randomInt(1, 7);
-                // take that many cards from the rightcards and put in the centercards
-                centercards = centercards.concat(halves.rightcards.splice(0, take));
+            // cut the cards in half
+            if (i = 0) {
+                var halves = cut(shufflecards);
+            } else {
+                var halves = cut(centercards);
             }
-            $scope.testcentercards = centercards;//testcode
+            while (halves.leftcards.length > 0 || halves.rightcards.length > 0) {
+                var flipflop = randomInt(1, 2);
+                if (flipflop == 1) {
+                    var take = randomInt(1, 5);
+                    centercards = centercards.concat(halves.leftcards.splice(0, take));
+                    take = randomInt(1, 5);
+                    centercards = centercards.concat(halves.rightcards.splice(0, take));
+                } else {
+                    var take = randomInt(1, 5);
+                    centercards = centercards.concat(halves.rightcards.splice(0, take));
+                    take = randomInt(1, 5);
+                    centercards = centercards.concat(halves.leftcards.splice(0, take));    
+                }
+            }
         }
-        return centercards;
+        // return centercards;
+        $scope.deck.cards = centercards;
+        $scope.testcentercards = centercards;//testcode
     }
 
     function deal(currentdeck) {
@@ -164,10 +194,12 @@ app.controller('DeckController', function ($scope) {
         };
     }
     newDeck($scope.deck.cards);
-    shuffle($scope.deck.cards);
+    // shuffle($scope.deck.cards);
     newHand($scope.deck.cards);
     $scope.testcurrentdeck = $scope.deck.cards;
     $scope.testcurrenthand = $scope.deck.hand;
+    $scope.testqueen = "queen_of_hearts.svg";
+    $scope.testqueenfullpath = "'/img/svgcards/queen_of_hearts.svg'";
 });
 
 // calculate payout as bet * scale unless 5 coin royal flush, then 4000 | 16 * scale | bet * scale * 3.2
