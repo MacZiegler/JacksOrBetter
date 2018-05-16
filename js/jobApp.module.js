@@ -193,6 +193,11 @@ app.controller('DeckController', function ($scope) {
             hand.push(deal(fromdeck));
         };
     }
+
+function toggle() {
+    $scope.deck.hand.keep = !$scope.deck.hand.keep;
+}
+
     newDeck($scope.deck.cards);
     shuffle($scope.deck.cards);
     newHand($scope.deck.cards);
