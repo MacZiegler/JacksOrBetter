@@ -3,41 +3,46 @@
   <div class="row" ng-controller="DeckController">
     <div class="col">
     <div id="Card01" class="card">
-        <img class="card-img-top" ng-src="/img/svgcards/{{ deck.hand[0].pathname }}" alt="{{ deck.hand[0].fullname }}">
+      <img ng-if="!game.started" class="card-img-top" ng-src="/img/svgcards/back.svg" alt="Playing Card">
+      <img ng-if="game.started" class="card-img-top" ng-src="/img/svgcards/{{ deck.hand[0].pathname }}" alt="{{ deck.hand[0].fullname }}">
       <div class="card-body">
-        <button type="button" class="btn btn-success" ng-click="">Keep</button>
+        <button ng-if="game.started" type="button" class="btn btn-success" ng-click="">Keep</button>
       </div>
     </div>
   </div>
   <div class="col">
     <div id="Card02" class="card">
-        <img class="card-img-top" ng-src="/img/svgcards/{{ deck.hand[1].pathname }}" alt="{{ deck.hand[1].fullname }}">
+      <img ng-if="!game.started" class="card-img-top" ng-src="/img/svgcards/back.svg" alt="Playing Card">
+        <img ng-if="game.started" class="card-img-top" ng-src="/img/svgcards/{{ deck.hand[1].pathname }}" alt="{{ deck.hand[1].fullname }}">
       <div class="card-body">
-        <button type="button" class="btn btn-success" ng-click="">Keep</button>
+        <button ng-if="game.started" type="button" class="btn btn-success" ng-click="">Keep</button>
       </div>
     </div>
   </div>
   <div class="col">
     <div id="Card03" class="card">
-        <img class="card-img-top" ng-src="/img/svgcards/{{ deck.hand[2].pathname }}" alt="{{ deck.hand[2].fullname }}">
+      <img ng-if="!game.started" class="card-img-top" ng-src="/img/svgcards/back.svg" alt="Playing Card">
+        <img ng-if="game.started" class="card-img-top" ng-src="/img/svgcards/{{ deck.hand[2].pathname }}" alt="{{ deck.hand[2].fullname }}">
       <div class="card-body">
-        <button type="button" class="btn btn-success" ng-click="">Keep</button>
+        <button ng-if="game.started" type="button" class="btn btn-success" ng-click="">Keep</button>
       </div>
     </div>
   </div>
   <div class="col">
     <div id="Card04" class="card">
-        <img class="card-img-top" ng-src="/img/svgcards/{{ deck.hand[3].pathname }}" alt="{{ deck.hand[3].fullname }}">
+      <img ng-if="!game.started" class="card-img-top" ng-src="/img/svgcards/back.svg" alt="Playing Card">
+        <img ng-if="game.started" class="card-img-top" ng-src="/img/svgcards/{{ deck.hand[3].pathname }}" alt="{{ deck.hand[3].fullname }}">
         <div class="card-body">
-        <button type="button" class="btn btn-success" ng-click="">Keep</button>
+        <button ng-if="game.started" type="button" class="btn btn-success" ng-click="">Keep</button>
       </div>
     </div>
   </div>
   <div class="col">
     <div id="Card05" class="card">
-      <img class="card-img-top" ng-src="/img/svgcards/{{ deck.hand[4].pathname }}" alt="{{ deck.hand[4].fullname }}">
+      <img ng-if="!game.started" class="card-img-top" ng-src="/img/svgcards/back.svg" alt="Playing Card">
+      <img ng-if="game.started" class="card-img-top" ng-src="/img/svgcards/{{ deck.hand[4].pathname }}" alt="{{ deck.hand[4].fullname }}">
       <div class="card-body">
-        <button type="button" class="btn btn-success" ng-click="">Keep</button>
+        <button ng-if="game.started" type="button" class="btn btn-success" ng-click="">Keep</button>
       </div>
     </div>
   </div>
