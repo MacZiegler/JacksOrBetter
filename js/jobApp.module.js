@@ -153,8 +153,7 @@ app.controller('DeckController', function ($scope) {
 
     function shuffle(shufflecards) {
         $scope.testshufflecards = shufflecards;//testcode
-        var shuffletimes = 20   ;
-        var centercards = [];
+        var shuffletimes = 12;
         for (var i = 0; i < shuffletimes; i++) {
             // cut the cards in half
             if (i === 0) {
@@ -162,6 +161,7 @@ app.controller('DeckController', function ($scope) {
             } else {
                 var halves = cut(centercards);
             }
+            var centercards = [];
             while (halves.leftcards.length > 0 || halves.rightcards.length > 0) {
                 var flipflop = randomInt(1, 2);
                 if (flipflop === 1) {
@@ -194,7 +194,7 @@ app.controller('DeckController', function ($scope) {
         };
     }
     newDeck($scope.deck.cards);
-    // shuffle($scope.deck.cards);
+    shuffle($scope.deck.cards);
     newHand($scope.deck.cards);
     $scope.testcurrentdeck = $scope.deck.cards;
     $scope.testcurrenthand = $scope.deck.hand;

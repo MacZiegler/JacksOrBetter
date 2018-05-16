@@ -1,12 +1,12 @@
 <!-- basic 5 card layout to begin, DRY optimize later -->
 <!-- <div class="row" ng-if="game.started"> -->
-  <div class="row" ng-controller="DeckController">
+  <div class="row m-xs-1 m-sm-2 m-lg-5" ng-controller="DeckController">
     <div class="col">
     <div id="Card01" class="card">
       <img ng-if="!game.started" class="card-img-top" ng-src="/img/svgcards/back.svg" alt="Playing Card">
       <img ng-if="game.started" class="card-img-top" ng-src="/img/svgcards/{{ deck.hand[0].pathname }}" alt="{{ deck.hand[0].fullname }}">
       <div class="card-body">
-        <button ng-if="game.started" type="button" class="btn btn-success" ng-click="">Keep</button>
+        <button ng-if="game.started" type="button" class="btn btn-primary mx-auto" ng-click="">Keep</button>
       </div>
     </div>
   </div>
@@ -15,7 +15,7 @@
       <img ng-if="!game.started" class="card-img-top" ng-src="/img/svgcards/back.svg" alt="Playing Card">
         <img ng-if="game.started" class="card-img-top" ng-src="/img/svgcards/{{ deck.hand[1].pathname }}" alt="{{ deck.hand[1].fullname }}">
       <div class="card-body">
-        <button ng-if="game.started" type="button" class="btn btn-success" ng-click="">Keep</button>
+        <button ng-if="game.started" type="button" class="btn btn-primary mx-auto" ng-click="">Keep</button>
       </div>
     </div>
   </div>
@@ -24,7 +24,7 @@
       <img ng-if="!game.started" class="card-img-top" ng-src="/img/svgcards/back.svg" alt="Playing Card">
         <img ng-if="game.started" class="card-img-top" ng-src="/img/svgcards/{{ deck.hand[2].pathname }}" alt="{{ deck.hand[2].fullname }}">
       <div class="card-body">
-        <button ng-if="game.started" type="button" class="btn btn-success" ng-click="">Keep</button>
+        <button ng-if="game.started" type="button" class="btn btn-primary mx-auto" ng-click="">Keep</button>
       </div>
     </div>
   </div>
@@ -33,7 +33,7 @@
       <img ng-if="!game.started" class="card-img-top" ng-src="/img/svgcards/back.svg" alt="Playing Card">
         <img ng-if="game.started" class="card-img-top" ng-src="/img/svgcards/{{ deck.hand[3].pathname }}" alt="{{ deck.hand[3].fullname }}">
         <div class="card-body">
-        <button ng-if="game.started" type="button" class="btn btn-success" ng-click="">Keep</button>
+        <button ng-if="game.started" type="button" class="btn btn-primary mx-auto" ng-click="">Keep</button>
       </div>
     </div>
   </div>
@@ -42,27 +42,27 @@
       <img ng-if="!game.started" class="card-img-top" ng-src="/img/svgcards/back.svg" alt="Playing Card">
       <img ng-if="game.started" class="card-img-top" ng-src="/img/svgcards/{{ deck.hand[4].pathname }}" alt="{{ deck.hand[4].fullname }}">
       <div class="card-body">
-        <button ng-if="game.started" type="button" class="btn btn-success" ng-click="">Keep</button>
+        <button ng-if="game.started" type="button" class="btn btn-primary mx-auto" ng-click="">Keep</button>
       </div>
     </div>
   </div>
 </div>
 <!-- test section -->
-<div class="row">
-  <div class="col" ng-controller="DeckController">
-    <p>Deck Test: {{ deck.cards.length }} cards</p>
-    <p>Test Queen: {{ testqueen }}</p>
+<!-- <div class="row"> -->
+  <!-- <div class="col" ng-controller="DeckController"> -->
+    <!-- <p>Deck Test: {{ deck.cards.length }} cards</p> -->
+    <!-- <p>Test Queen: {{ testqueen }}</p> -->
     <!-- <p><button type="button" class="btn btn-success" ng-click="shuffle(deck.cards)">Shuffle</button></p> -->
     <!-- <p>deck.cards: {{ deck.cards }}</p> -->
     <!-- <p>testshufflecards: {{ testshufflecards }}</p> -->
     <!-- <p>testhalves: {{ testhalves }}</p> -->
     <!-- <p>testleftcards: {{ testleftcards }}</p> -->
     <!-- <p>testrightcards: {{ testrightcards }}</p> -->
-    <p>testchopdeck: {{ testchopdeck }}</p>
-    <p>testchopdeck.length: {{ testchopdeck.length }}</p>
-    <p>Hand Test: {{ deck.hand.length }} cards</p>
-    <p>testcurrenthand: {{ testcurrenthand }}</p>
-    <p>testcurrentdeck: {{ testcurrentdeck }}</p>
-  </div>
-</div>
+    <!-- <p>testchopdeck: {{ testchopdeck }}</p> -->
+    <!-- <p>testchopdeck.length: {{ testchopdeck.length }}</p> -->
+    <!-- <p>Hand Test: {{ deck.hand.length }} cards</p> -->
+    <!-- <p>testcurrenthand: {{ testcurrenthand }}</p> -->
+    <!-- <p>testcurrentdeck: {{ testcurrentdeck }}</p> -->
+  <!-- </div> -->
+<!-- </div> -->
 <!-- Playing Cards thanks to Byron Knoll: http://code.google.com/p/vector-playing-cards/ -->

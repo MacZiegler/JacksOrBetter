@@ -28,3 +28,12 @@ h5,
 h6 {
   font-weight: 900;
 }
+
+.card {
+  background-color: transparent;
+  border-style: none;
+}
+
+/* .card-body {
+  background-color: transparent;
+} */
