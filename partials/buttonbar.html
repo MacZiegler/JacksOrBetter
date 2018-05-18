@@ -1,20 +1,20 @@
 <div ng-if="game.started" ng-controller="BetController as bet">
   <!-- info bar -->
   <div class="container">
-    <strong class="alert alert-warning">Bet: {{ bet.amount }}</strong>
-    <strong class="alert alert-warning">This win</strong>
-    <strong class="alert alert-warning">Total winnings</strong>
+    <strong class="alert alert-warning m-sm-3 m-lg-5">Bet: {{ bet.amount }}</strong>
+    <strong class="alert alert-warning m-sm-3 m-lg-5">This win</strong>
+    <strong class="alert alert-warning m-sm-3 m-lg-5">Total winnings</strong>
 
   </div>
   <!-- button bar -->
   <div class="container">
-    <button type="button" class="btn btn-danger btn-lg" ng-disabled="bet.amount == 0" ng-click="bet.reset()">
+    <button type="button" class="btn btn-danger btn-lg m-sm-3 m-lg-5" ng-disabled="bet.amount == 0" ng-click="bet.reset()">
       <strong>Clear Bet</strong>
     </button>
-    <button type="button" class="btn btn-primary btn-lg" ng-disabled="bet.amount == 5" ng-click="bet.onemore()">
+    <button type="button" class="btn btn-primary btn-lg m-sm-3 m-lg-5" ng-disabled="bet.amount == 5" ng-click="bet.onemore()">
       <strong>Bet One</strong>
     </button>
-    <button type="button" class="btn btn-primary btn-lg" ng-disabled="bet.amount == 5" ng-click="bet.max()">
+    <button type="button" class="btn btn-primary btn-lg m-sm-3 m-lg-5" ng-disabled="bet.amount == 5" ng-click="bet.max()">
       <strong>Bet Max</strong>
     </button>
   </div>
