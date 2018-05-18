@@ -63,6 +63,8 @@ app.controller('DeckController', function ($scope) {
         "diamonds",
         "clubs"
     ];
+    var playnumber = 0;
+    var fresh = true;
 
     function randomInt(min, max) {
         return Math.floor((Math.floor(Math.random() * (max - min + 1) + min)
@@ -74,7 +76,7 @@ app.controller('DeckController', function ($scope) {
         var pipname = pips[pip];
         var suitname = suits[suit];
         var position = pips.indexOf(pipname);
-        if (position > 9) {
+        if (position > 8) {
             var path = pipname + '_of_' + suitname + '.svg'
         } else {
             var path = (position + 2) + '_of_' + suitname + '.svg'
@@ -101,7 +103,7 @@ app.controller('DeckController', function ($scope) {
     }
 
     function cut(chopdeck) {
-        $scope.testchopdeck = chopdeck;//testcode
+        // $scope.testchopdeck = chopdeck;//testcode
         var leftcards = [];
         var rightcards = [];
         if (!chopdeck || !chopdeck.length) {
@@ -152,7 +154,7 @@ app.controller('DeckController', function ($scope) {
     }
 
     function shuffle(shufflecards) {
-        $scope.testshufflecards = shufflecards;//testcode
+        // $scope.testshufflecards = shufflecards;//testcode
         var shuffletimes = 12;
         for (var i = 0; i < shuffletimes; i++) {
             // cut the cards in half
@@ -179,32 +181,57 @@ app.controller('DeckController', function ($scope) {
             // return centercards;
         }
         $scope.deck.cards = centercards;
-        $scope.testcentercards = centercards;//testcode
+        // $scope.testcentercards = centercards;//testcode
     }
 
-    function deal(currentdeck) {
-        return currentdeck.shift();
+    // function deal(currentdeck) {
+    //     return currentdeck.shift();
+    // }
+    function dealtopcard() {
+        return $scope.deck.cards.shift();
     }
 
-    function newHand(fromdeck) {
-        var hand = $scope.deck.hand;
-        hand.length = 0;
+    function newHand() {
+        // var fromdeck = $scope.deck.cards;
+        // var hand = $scope.deck.hand;
+        // hand.length = 0;
+        $scope.deck.hand.length = 0;
         for (var h = 0; h < 5; h++) {
-            hand.push(deal(fromdeck));
+            $scope.deck.hand.push(dealtopcard());
+            // hand.push(deal());
+            // hand.push(deal(fromdeck));
+            // hand[h].keep = true;
         };
+        fresh = true;
     }
 
-function toggle() {
-    $scope.deck.hand.keep = !$scope.deck.hand.keep;
-}
+    function secondHand() {
+        var topofdeck = $scope.deck.cards;
+        var hand = $scope.deck.hand;
+        for (var h = 0; h < 5; h++) {
+            if (!hand[h].keep) {
+                hand.splice(h, 1, deal(topofdeck));
+            }
+        };
+        fresh = false;
+    }
+
+    function deal() {
+        if (fresh) {
+            secondHand();
+        } else {
+            newhand();
+        }
+    }
 
     newDeck($scope.deck.cards);
     shuffle($scope.deck.cards);
-    newHand($scope.deck.cards);
-    $scope.testcurrentdeck = $scope.deck.cards;
-    $scope.testcurrenthand = $scope.deck.hand;
-    $scope.testqueen = "queen_of_hearts.svg";
-    $scope.testqueenfullpath = "'/img/svgcards/queen_of_hearts.svg'";
+    newHand();
+    // secondHand();
+    // $scope.testcurrentdeck = $scope.deck.cards;
+    // $scope.testcurrenthand = $scope.deck.hand;
+    // $scope.testqueen = "queen_of_hearts.svg";
+    // $scope.testqueenfullpath = "'/img/svgcards/queen_of_hearts.svg'";
 });
 
 // calculate payout as bet * scale unless 5 coin royal flush, then 4000 | 16 * scale | bet * scale * 3.2
