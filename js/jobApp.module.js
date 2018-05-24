@@ -91,7 +91,8 @@ app.controller('DeckController', function ($scope) {
         };
     }
 
-    function newDeck(makedeck) {
+    function newDeck() {
+        var makedeck = $scope.deck.cards;
         var pipsall = pips.length;
         var suitsall = suits.length;
         for (var suitspot = 0; suitspot < suitsall; suitspot++) {
@@ -99,7 +100,7 @@ app.controller('DeckController', function ($scope) {
                 makedeck.push(Card(pipspot, suitspot));
             }
         }
-        return makedeck;
+        // return makedeck;
     }
 
     function cut(chopdeck) {
@@ -153,8 +154,8 @@ app.controller('DeckController', function ($scope) {
         }
     }
 
-    function shuffle(shufflecards) {
-        // $scope.testshufflecards = shufflecards;//testcode
+    function shuffle() {
+        var shufflecards = $scope.deck.cards;
         var shuffletimes = 12;
         for (var i = 0; i < shuffletimes; i++) {
             // cut the cards in half
@@ -195,6 +196,9 @@ app.controller('DeckController', function ($scope) {
         // var fromdeck = $scope.deck.cards;
         // var hand = $scope.deck.hand;
         // hand.length = 0;
+        if ($scope.deck.cards.length < 13) {
+            shuffle();
+        }
         $scope.deck.hand.length = 0;
         for (var h = 0; h < 5; h++) {
             $scope.deck.hand.push(dealtopcard());
@@ -210,7 +214,8 @@ app.controller('DeckController', function ($scope) {
         var hand = $scope.deck.hand;
         for (var h = 0; h < 5; h++) {
             if (!hand[h].keep) {
-                hand.splice(h, 1, deal(topofdeck));
+            // $scope.deck.hand.push(dealtopcard());
+                hand.splice(h, 1, dealtopcard());
             }
         };
         fresh = false;
@@ -224,9 +229,22 @@ app.controller('DeckController', function ($scope) {
         }
     }
 
-    newDeck($scope.deck.cards);
-    shuffle($scope.deck.cards);
+    //testcode:
+    function randomkeep() {
+        var hand = $scope.deck.hand;
+        for (var k =0; k < 5; k++) {
+            var coinflip = randomInt(1,2);
+            if (coinflip === 1) {
+                hand[k].keep = false;
+            }
+        }
+    }
+
+    newDeck();
+    shuffle();
     newHand();
+    randomkeep();
+    deal();//testcode
     // secondHand();
     // $scope.testcurrentdeck = $scope.deck.cards;
     // $scope.testcurrenthand = $scope.deck.hand;

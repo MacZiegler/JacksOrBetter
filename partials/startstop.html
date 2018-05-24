@@ -1,10 +1,10 @@
 <!-- start and stop -->
-<div class="container">
-  <div class="mx-auto" ng-if="!game.started">
+<div class="container m-sm-2 m-lg-5">
+  <div class="p-2" ng-if="!game.started">
     <button class="btn btn-success" ng-click="game.start()">Start Game</button>
     <strong class="alert alert-warning">No Game Running</strong>
   </div>
-  <div class="mx-auto" ng-if="game.started">
+  <div class="p-2" ng-if="game.started">
     <strong class="alert alert-warning">Game In Progress</strong>
     <button class="btn btn-danger" ng-click="game.end()">End Game</button>
   </div>
