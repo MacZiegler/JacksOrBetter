@@ -1,7 +1,7 @@
 // reminder: job stands for "Jacks or Better"
 var app = angular.module('jobApp', []);
 
-app.controller('RunController', function ($scope) {
+app.controller('RunController', function ($scope, $http) {
 
     $scope.game.started = false;
 
@@ -40,8 +40,9 @@ app.controller('DeckController', function ($scope) {
     $scope.deck = {};
     $scope.deck.cards = [];
     $scope.deck.hand = [];
-    $scope.deck.shuffle = shuffle;
+    // $scope.deck.shuffle = shuffle;
     $scope.deck.deal = deal;
+    $scope.deck.hand.fresh = true;
     var pips = [
         "two",
         "three",
@@ -64,7 +65,7 @@ app.controller('DeckController', function ($scope) {
         "clubs"
     ];
     var playnumber = 0;
-    var fresh = true;
+    // var fresh = $scope.deck.hand.fresh;
 
     function randomInt(min, max) {
         return Math.floor((Math.floor(Math.random() * (max - min + 1) + min)
@@ -197,6 +198,7 @@ app.controller('DeckController', function ($scope) {
         // var hand = $scope.deck.hand;
         // hand.length = 0;
         if ($scope.deck.cards.length < 13) {
+            newDeck();
             shuffle();
         }
         $scope.deck.hand.length = 0;
@@ -206,7 +208,7 @@ app.controller('DeckController', function ($scope) {
             // hand.push(deal(fromdeck));
             // hand[h].keep = true;
         };
-        fresh = true;
+        $scope.deck.hand.fresh = true;
     }
 
     function secondHand() {
@@ -218,14 +220,14 @@ app.controller('DeckController', function ($scope) {
                 hand.splice(h, 1, dealtopcard());
             }
         };
-        fresh = false;
+        $scope.deck.hand.fresh = false;
     }
 
     function deal() {
-        if (fresh) {
+        if ($scope.deck.hand.fresh) {
             secondHand();
         } else {
-            newhand();
+            newHand();
         }
     }
 
@@ -243,8 +245,8 @@ app.controller('DeckController', function ($scope) {
     newDeck();
     shuffle();
     newHand();
-    randomkeep();
-    deal();//testcode
+    // randomkeep();//testcode
+    // deal();//testcode
     // secondHand();
     // $scope.testcurrentdeck = $scope.deck.cards;
     // $scope.testcurrenthand = $scope.deck.hand;

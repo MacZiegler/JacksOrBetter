@@ -24,9 +24,6 @@
 
 <body ng-app="jobApp" ng-controller="RunController as game">
   <h1 class="text-light text-center shadow">Jacks or Better!</h1>
- 
-  <!-- payout table -->
-  <div ng-include="'partials/paytable.html'"></div>
 
   <!-- start/stop game buttons -->
   <div ng-include="'partials/startstop.html'"></div>
@@ -36,6 +33,9 @@
 
   <!-- <p ng-if="game.started">Insert cards here.</p> -->
   <div ng-include="'partials/cards.html'"></div>
+ 
+  <!-- payout table -->
+  <div ng-include="'partials/paytable.html'"></div>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
